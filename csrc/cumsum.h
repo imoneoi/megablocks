@@ -29,15 +29,13 @@ template <typename Type> struct Cumsum {
 		  InputIteratorT d_in,
 		  OutputIteratorT d_out,
 		  int num_items,
-		  cudaStream_t stream = 0,
-		  bool debug_synchronous = false) {
+		  cudaStream_t stream = 0) {
     CUDA_CALL(cub::DeviceScan::ExclusiveSum(d_temp_storage,
 					    temp_storage_bytes,
 					    d_in,
 					    d_out,
 					    num_items,
-					    stream,
-					    debug_synchronous));
+					    stream));
   }
 };
 
@@ -50,15 +48,13 @@ template <> struct Cumsum<Inclusive> {
 		  InputIteratorT d_in,
 		  OutputIteratorT d_out,
 		  int num_items,
-		  cudaStream_t stream = 0,
-		  bool debug_synchronous = false) {
+		  cudaStream_t stream = 0) {
     CUDA_CALL(cub::DeviceScan::InclusiveSum(d_temp_storage,
 					    temp_storage_bytes,
 					    d_in,
 					    d_out,
 					    num_items,
-					    stream,
-					    debug_synchronous));
+					    stream));
   }
 };
 
